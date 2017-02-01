@@ -1,2 +1,2 @@
 # micromanager
-experimental template-first micro managing cms
+experimental non-invasive, template-first micro managing cms for django
