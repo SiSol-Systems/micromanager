@@ -1,0 +1,8 @@
+{% extends base_template %}
+{% load micromanager_tags %}
+
+{% block content %}
+	{% cms_get_microcontent 'freepage_content' 'layoutable-full' as page_content %}
+	{{ page_content|safe }}
+
+{% endblock %}

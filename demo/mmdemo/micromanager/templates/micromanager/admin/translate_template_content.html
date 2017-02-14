@@ -1,0 +1,74 @@
+{% extends 'micromanager/admin/base.html' %}
+{% load i18n static imagekit micromanager_tags %}
+
+{% block content %}
+<p>&nbsp;</p>
+<form id="pageform" action="{% url 'micromanager_translate_page' page.pk language %}" method="POST">{% csrf_token %}
+	<div class="container-fluid">
+		{% with primary_language=request.cms.primary_language %}
+			{% for field in form %}
+
+				{% if field.is_hidden %}
+					{{ field }}
+				{% else %}
+
+					{% if field.field.cms_object %}
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<h4>{{ field.label }} <img src="{% static 'micromanager/admin/img/countries_big/' %}{{ primary_language }}.png"/></h4>
+								<div class="source-content">
+									{% get_localized_content field.field.cms_object.instance primary_language  as content %}
+									{{ content|safe }}
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<h4>{{ field.label }} <img src="{% static 'micromanager/admin/img/countries_big/' %}{{ language }}.png"/></h4>
+								{{ field }}
+							</div>
+						</div>
+						
+						<hr>
+					{% else %}
+						<div class="row">
+							<div class="col-xs-12 col-md-6">
+								<h4>{{ field.label }} <img src="{% static 'micromanager/admin/img/countries_big/' %}{{ primary_language }}.png"/></h4>
+								<div class="source-content">
+									{% get_localized_attribute page primary_language field.name %}
+								</div>
+							</div>
+							<div class="col-xs-12 col-md-6">
+								<h4>{{ field.label }} <img src="{% static 'micromanager/admin/img/countries_big/' %}{{ language }}.png"/></h4>
+								{{ field }}
+							</div>
+						</div>
+					{% endif %}
+
+				{% endif %}
+			{% endfor %}
+		{% endwith %}
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<p>
+					<button type="submit" data-href="{% url 'micromanager_translate_page' page.pk language %}" class="formsubmit btn btn-success">{% trans 'save page' %}</button>
+					<button type="submit" data-href="{% url 'micromanager_translate_page' page.pk language %}?translation-ready=1" class="formsubmit btn btn-primary">{% trans 'translation is done' %}</button>
+				</p>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+	{% for field_name in form.layoutable_fields %}
+		CKEDITOR.replace( '{{ field_name }}' );
+	{% endfor %}
+
+	var form = $("#pageform");
+
+	$(".formsubmit").on("click", function(ev){
+		form.attr("action", $(this).attr("data-href"));
+		form.attr("target", "");
+	});
+</script>
+{% endblock %}

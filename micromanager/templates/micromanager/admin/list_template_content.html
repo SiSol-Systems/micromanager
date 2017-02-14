@@ -1,0 +1,19 @@
+{% extends 'micromanager/admin/base.html' %}
+{% load i18n %}
+
+{% block content %}
+	<div class="container">
+		{% if object_list %}
+			<div class="row">
+				{% for template_content in object_list %}
+					<div id="template-content-{{ template_content.id }}" class="col-xs-12 col-md-4">
+						{% include 'micromanager/admin/list_template_content_entry.html' %}
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<br>
+			<div class="alert alert-info">{% trans 'You have no content yet.' %}</div>
+		{% endif %}
+	</div>
+{% endblock %}

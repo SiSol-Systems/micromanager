@@ -1,0 +1,70 @@
+{% load i18n static micromanager_tags %}
+<div><h4><a href="{% url 'micromanager_manage_template_content' template_content.pk %}">{{ template_content.primary_title }}</a></h4></div>
+<div>{% trans 'Template' %}: {{ template_content.verbose_template_name }}</div>
+<div class="row">
+	{% for language in request.cms.languages %}
+		<div  class="col-md-4">
+			<div>
+				<img src="{% static 'micromanager/admin/img/countries_big/' %}{{ language.language }}.png" />
+			</div>
+			<div>
+				{% if template_content|template_content_translation_complete:language.language %}
+					<span class="label label-success">{% trans 'ready' %}</span>
+				{% else %}
+					<span class="label label-warning">{% trans 'not ready' %}</span>
+				{% endif %}
+				{% get_template_content_locale template_content language.language as localized_template_content %}
+				{% if localized_template_content and localized_template_content.published_version %}
+					<span class="label label-success">{% trans 'published' %}</span>
+				{% else %}
+					<span class="label label-warning">{% trans 'not published' %}</span>
+				{% endif %}
+				{% if template_content.published_version %}
+					{% if localized_template_content.draft_version != template_content.published_version %}
+						<span class="label label-warning">{% trans 'new changes' %}</span>
+					{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	{% endfor %}
+</div><br>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="btn-group dropup">
+			<div class="dropdown">
+				<button class="btn btn-xs btn-default dropdown-toggle" type="button" id="dropdownMenu-{{ template_content.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					{% trans 'manage' %}
+				<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenu-{{ template_content.id }}">
+					<li><a href="{% url 'micromanager_manage_template_content' template_content.pk %}">{% trans 'edit' %}</a></li>
+					<li><a data-url="{% url 'micromanager_publish_template_content' template_content.pk %}" class="xhr" ajax-target="template-content-{{ template_content.id }}">{% trans 'publish' %}</a></li>
+					{% for language in request.cms.languages %}
+						{% ifequal language.language request.cms.primary_language %}
+						{% else %}
+							<li><a href="{% url 'micromanager_translate_template_content' template_content.id language.language %}">{% blocktrans with language=language.language %}translate into {{ language }}{% endblocktrans %}</a></li>
+						{% endifequal %}
+					{% endfor %}
+					<li role="separator" class="divider"></li>
+					{% if template_content.published_version %}
+						<li><a data-url="{ url 'micromanager_unpublish_template_content' template_content.id }" class="xhr" ajax-target="ModalContent">{% trans 'unpublish' %}</a></li>
+						<li role="separator" class="divider"></li>
+					{% endif %}
+					<li><a data-url="{% url 'micromanager_delete_template_content' template_content.id %}" class="xhr" ajax-target="ModalContent">{% trans 'delete' %}</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% if publication and publication_errors %}
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-danger">
+				{% trans 'Publication failed:' %}<br>
+				{% for error in publication_errors %}
+					{{ error }} <br>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}

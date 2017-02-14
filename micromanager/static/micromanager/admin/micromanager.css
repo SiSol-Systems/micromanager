@@ -1,0 +1,86 @@
+body {
+	padding-top: 50px;
+}
+
+
+object {
+	width: 100%;
+	height: 1000px;
+	border: 2px solid black;
+}
+
+
+.fileupload {
+	margin-bottom: 20px;
+}
+
+.fileuploadwrap {
+	display: table;
+	width:100%;
+	height: 150px;
+}
+
+.fileupload input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.fileupload label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(150,150,150);
+    display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+
+.fileupload input[type="file"]:focus + label,
+.fileupload input[type="file"] + label:hover {
+    background-color: rgb(180,180,180);
+}
+
+.padding {
+	padding: 5px;
+}
+
+textarea, input[type="text"] {
+	width: 100%;	
+}
+
+.v-center {
+   display: flex;
+   align-items: center;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.bottom-padding {
+	padding-bottom: 20px;
+}
+
+.field-label {
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+.nulldesign {
+	background: none;
+	border: none;
+}
+
+.managenaventry {
+	margin-bottom: 20px;
+}

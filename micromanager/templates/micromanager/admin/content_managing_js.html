@@ -1,0 +1,7 @@
+{% if template_content %}
+	var template_content_id = {{ template_content.id }};
+{% else %}
+	var template_content_id = null;
+{% endif %}
+var language = "{{ language }}";
+cms_manage_image(ev, template_content_id, language, deleteFileContent);

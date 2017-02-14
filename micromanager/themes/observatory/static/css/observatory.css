@@ -1,0 +1,58 @@
+*, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+}
+
+* {
+	outline:none;
+}
+
+body {
+	padding-top: 50px;
+	padding-bottom: 10rem;
+}
+
+.navbar {
+	-webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.2);
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
+.teaserback {
+	background-size:cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	color: #FFF;
+}
+
+.blackback {
+	padding: 1em;
+	background: rgba(0,0,0,0.5);
+}
+
+.largeteaser {
+	font-size: 2em;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.teaserblock {
+	margin-bottom: 2em;
+}
+
+.bottom {
+	height: 7rem;
+	padding: 2em;
+	background: rgb(220,220,220);
+	position: absolute;
+	bottom:0; left:0; right:0;
+}

@@ -1,0 +1,28 @@
+{
+	"min_micromanager_version" : 1,
+	"name" : "Observatory",
+	"navigations" : ["Navigation", "Footer"],
+	"sections" : {
+		"Blog" : {
+			"extends" : "blog_base.html"
+		}
+	},
+	"verbose_template_names" : {
+		"pages/free_page.html" : {
+			"de" : "Freie Seite",
+			"en" : "Free Page"
+		},
+		"pages/test.html" : {
+			"de" : "Test MicroContent",
+			"en" : "Test MicroContent"
+		},
+		"pages/home.html" : {
+			"de" : "Home Page Streifen Design",
+			"en" : "Home Page Stripes"
+		},
+		"content/news.html" : {
+			"de" : "Test include tag",
+			"en" : "Test include tag"
+		}
+	}
+}

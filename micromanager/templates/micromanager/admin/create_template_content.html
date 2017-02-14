@@ -1,0 +1,21 @@
+{% extends 'micromanager/admin/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<p>&nbsp;</p>
+<div class="container">
+	{% include 'micromanager/admin/language_reminder.html' %}
+	<div class="row">
+		<div class="col-xs-12">
+			<form action="{% url 'micromanager_create_template_content' template_type %}" method="POST">{% csrf_token %}
+				<p>
+					{{ form.as_p }}
+				</p>
+				<p class="text-center">
+					<button type="submit" class="btn btn-success">{% trans 'submit' %}</button>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,4 @@
+django_imagekit>=3.3
+django_cleanup>=0.4.2
+django_widget_tweaks>=1.4.1
+pillow

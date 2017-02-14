@@ -1,0 +1,8 @@
+{% load i18n staticfiles %}
+
+<div class="row">
+	<div class="col-xs-12">
+		<img src="{% static 'micromanager/admin/img/countries_big/' %}{{ request.cms.primary_language }}.png" />
+		{% blocktrans with language=request.cms.primary_language %}The current primary language of your CMS is "{{ language }}". Fill in the form using your primary language. Translations are done later.{% endblocktrans %}
+	</div>
+</div>

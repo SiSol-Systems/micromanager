@@ -1,0 +1,46 @@
+{% extends base_template %}
+{% load micromanager_tags %}
+
+{% block title %}{{ localized_template_content.title }}{% endblock %}
+
+{% block content %}
+
+	<h2>Testing content</h2>
+
+	<h3>Not layoutable content:</h3>
+	{% cms_get_microcontent 'simple_content' %}
+
+
+	<h3>Fully Layoutable content:</h3>
+	{% cms_get_microcontent 'layout1' 'layoutable-full' %}
+
+	<h3>Simply Layoutable content:</h3>
+	{% cms_get_microcontent 'layout2' 'layoutable-simple' %}
+
+	<h3>multiple unLayoutable content:</h3>
+	{% cms_get_microcontents 'multi-content'  as multi_content %}
+	{% for cont in multi_content %}
+		<p>
+			{{ cont }}
+		</p>
+	{% endfor %}
+
+	<h3>An Image:</h3>
+	{% cms_get_image 'test_image' as image %}
+	<img src="{{ image.url }}" style="width:50%; height:auto;"/>
+
+	<h3>Multiple images:</h3>
+	{% cms_get_images 'multi_image' as mimages %}
+	{% for mimage in mimages %}
+		<img src="{{ mimage.url }}" style="width:50%; height:auto;"/>
+	{% endfor %}
+
+	<h3>Latest Templated Content (News):</h3>
+	{% include_latest_content 'content/news.html' %}
+	
+	<h3>Last 3 Templated Content (News):</h3>
+	{% get_template_content 'content/news.html' limit=3 as newspages %}
+	{% for news in newspages %}
+		{% include_content news %}
+	{% endfor %}
+{% endblock %}

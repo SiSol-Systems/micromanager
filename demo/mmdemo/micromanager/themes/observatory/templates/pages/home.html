@@ -1,0 +1,39 @@
+{% extends base_template %}
+{% load i18n micromanager_tags %}
+
+{% block content %}
+<div class="container-fluid">
+	{% cms_get_image 'home_background' as background_image %}
+	<div class="row teaserback" style="background-image:url({{ background_image.url }})">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 blackback text-center largeteaser">
+					{% cms_get_microcontent 'home_title' 'short' %}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 blackback teaserblock">
+					{% cms_get_microcontent 'home_first_teaser_text' 'layoutable-simple' %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center largeteaser">
+					{% cms_get_microcontent 'home_title_2' 'short' %}
+				</div>
+			</div>
+			<div class="row teaserblock">
+				<div class="col-xs-12 col-md-6">
+					{% cms_get_microcontent 'home_text_left' 'layoutable-simple' %}
+				</div>
+				<div class="col-xs-12 col-md-6">
+					{% cms_get_microcontent 'home_text_right' 'layoutable-simple' %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load i18n %}
+{% if field.is_hidden %}
+{% else %}
+	<div class="row field-label">
+		<div class="col-xs-6 col-md-8 col-lg-10">
+			{{ field.label }}
+		</div>
+		<div class="col-xs-6 col-md-4 col-lg-2 text-right">
+			{% if cms_object and field.value %}
+				<button type="button" class="btn btn-danger btn-xs delete-content-button" data-pk="{{ cms_object.instance.pk }}" data-category="{{ cms_object.content_category }}">{% trans 'delete' %}</button>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}
+<div class="row">
+	<div class="col-xs-12">
+		{{ field }}
+		{% if field.errors %}
+			<p class="error">{{ field.errors.as_text }}</p>
+		{% endif %}
+	</div>
+</div>

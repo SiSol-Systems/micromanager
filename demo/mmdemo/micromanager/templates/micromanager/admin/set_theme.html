@@ -1,0 +1,22 @@
+{% extends 'micromanager/admin/base.html' %}
+{% load i18n static micromanager_tags %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center"><br>
+				<form method="POST" action="{% url 'micromanager_theme_settings' %}">{% csrf_token %}
+					<p>
+						{{ form }}
+					</p>
+					<p class="text-center">
+						{% if success %}
+							<div class="alert alert-success">{% trans 'successfully changed your theme' %}</div>
+						{% endif %}
+						<button type="submit" class="btn btn-success">{% trans 'save' %}</button>
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

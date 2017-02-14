@@ -1,0 +1,11 @@
+{% for field in fieldform %}
+	{% include 'micromanager/admin/filecontent_field.html' %}
+	<script>
+		$("input[name={{ field.name }}]").on("change", function(ev){
+			{% include 'micromanager/admin/content_managing_js.html' %}
+		});
+		{% if form.errors %}
+			alert("errors: {{ forms.errors.as_text }} {{ form.non_field_errors.as_text }}");
+		{% endif %}
+	</script>
+{% endfor %}

@@ -1,0 +1,173 @@
+{% extends 'micromanager/admin/base.html' %}
+{% load i18n imagekit static %}
+
+{% block content %}
+<p>&nbsp;</p>
+<div class="container-fluid">
+	{% include 'micromanager/admin/language_reminder.html' %}
+	{% if template_content.published_version %}
+		{% if template_content.published_version == template_content.draft_version %}
+			<div class="alert alert-success">
+				{% trans 'This content is currently published with the contents shown below. Saving it will start a new version.' %}
+			</div>
+		{% else %}
+			<div class="alert alert-info">
+				{% trans 'This content has unpublished changes.' %}
+			</div>
+		{% endif %}
+	{% else %}
+		<div class="alert alert-info">
+			{% trans 'This content has not been published yet.' %}
+		</div>
+	{% endif %}
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<h3>{% trans 'Components' %}</h3>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<h3 class="hidden-xs">{% trans 'Preview' %} <small><a href="http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" target="_blank">{% trans 'show in new window' %}</a></small></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-6">
+			<form id="contentform" action="{% url view_name view_arg %}" method="POST">{% csrf_token %}
+
+				{% for field in form %}
+					{% with cms_object=field.field.cms_object %}
+
+						{% if cms_object.multi %}
+		
+							{% if cms_object.kwargs.is_first %}
+								{% if cms_object.is_file %}
+									<div class="row field-label">
+										<div class="col-xs-12">
+											{{ field.label }}
+										</div>
+									</div>
+								{% endif %}
+								<div id="{{ cms_object.content_category }}-{{ cms_object.content_type }}-container" class="row">
+							{% endif %}
+
+									{% if cms_object.is_file %}
+										{% include 'micromanager/admin/filecontent_field.html' %}
+									{% else %}
+										<div class="col-xs-12" {% if not cms_object.instance.pk %}data-new="1"{% endif %}>
+											{% include 'micromanager/admin/textcontent_field.html' %}
+										</div>
+									{% endif %}
+
+							{% if cms_object.kwargs.is_last %}
+								</div>
+								<div class="row">
+									<div class="col-xs-12 text-center"><br>
+										<button type="button" class="btn btn-secondary add-content-button" data-target="{{ cms_object.content_category }}-{{ cms_object.content_type }}-container">{% blocktrans with name=cms_object.content_type %}add {{ name }}{% endblocktrans %}</button>
+									</div>
+								</div>
+							{% endif %}
+		
+						{% else %}
+
+		
+							{% if cms_object.is_file %}
+								{% if field.is_hidden %}
+								{% else %}
+									<div class="row field-label">
+										<div class="col-xs-12">
+											{{ field.label }}
+										</div>
+									</div>
+								{% endif %}
+								<div class="row">
+									{% include 'micromanager/admin/filecontent_field.html' %}
+								</div>
+							{% else %}
+								{% include 'micromanager/admin/textcontent_field.html' %}
+							{% endif %}
+
+
+						{% endif %}				
+
+					{% endwith %}
+				{% endfor %}
+
+				<hr>
+				<p class="text-center">
+					<button type="submit" data-href="{% url view_name view_arg %}" class="formsubmit btn btn-success">{% trans 'save page' %}</button>
+					<button type="submit" data-href="{% url view_name view_arg %}?translation-ready=1" class="formsubmit btn btn-primary">{% trans 'ready for publication' %}</button>
+				</p>
+			</form>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<h3 class="visible-xs">{% trans 'Preview' %} <small><a href="http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" target="_blank">{% trans 'show in new window' %}</a></small></h3>
+			<object id="contentPreview" type="text/html" data="http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" ></object>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block extra_script %}
+	<script>
+
+		{% for field_name in form.layoutable_full_fields %}
+			CKEDITOR.replace( '{{ field_name }}',{
+				customConfig: "{% static 'micromanager/admin/layout-complex.js' %}"
+			});
+			
+		{% endfor %}
+		{% for field_name in form.layoutable_simple_fields %}
+			CKEDITOR.replace( '{{ field_name }}',{
+				customConfig: "{% static 'micromanager/admin/layout-simple.js' %}"
+			});
+			
+		{% endfor %}
+
+		var form = $("#contentform");
+
+		$(".formsubmit").on("click", function(ev){
+			form.attr("action", $(this).attr("data-href"));
+			form.attr("target", "");
+		});
+
+
+		$(".add-content-button").on("click", function(ev){
+			ev.preventDefault();
+			var target =  $(this).attr("data-target");
+			cms_add_element("#" + target);
+		});
+
+		$(".delete-content-button").on("click", function(ev){
+			var button = $(this);
+
+			var url = "{% if template_content %}{% url 'DeleteContent' template_content.id language %}{% else %}{% url 'DeleteContent' language %}{% endif %}?category=" + button.attr("data-category") + "&pk=" + button.attr("data-pk");
+
+			$.get(url, function(html){
+				$("#ModalContent").html(html);
+				ajaxify("#ModalContent");
+			});		
+		
+		});
+
+
+		function reloadPreview(){
+			$("#contentPreview").attr("data", "http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1");
+		}
+
+		function deleteFileContent(ev){
+			ev.preventDefault();
+			var button = $(this);
+			var url = "{% if template_content %}{% url 'DeleteFileContent' template_content.id language %}{% else %}{% url 'DeleteFileContent' language %}{% endif %}?category=" + button.attr("data-category") + "&pk=" + button.attr("data-pk") + "&contenttype=" + button.attr("data-contenttype");
+			$.get(url, function(html){
+				$("#ModalContent").html(html);
+				ajaxify("#ModalContent");
+			});
+		}
+
+		$(".delete-filecontent-button").on("click", deleteFileContent);
+
+
+		$(".fileupload input").on("change", function(ev){
+			{% include 'micromanager/admin/content_managing_js.html' %}
+		});
+
+
+	</script>
+{% endblock %}

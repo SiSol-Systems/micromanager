@@ -1,0 +1,6 @@
+{% load micromanager_tags %}
+
+<h3>{{ localized_template_content.title }}</h3>
+<p>
+	{% cms_get_microcontent 'news_content' 'layoutable-simple' %}
+</p>

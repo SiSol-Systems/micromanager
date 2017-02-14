@@ -1,0 +1,21 @@
+{% extends 'micromanager/setup_base.html' %}
+{% load i18n static micromanager_tags %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-8 .col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<div class="text-center">
+					<img src="{% static 'micromanager/logo.png' %}" />
+					<h1>{% trans 'Micro Manager Website Setup' %}</h1>
+					<form method="POST" action="{% url 'micromanager_setup' %}">{% csrf_token %}
+						{% render_bootstrap_form form %}
+						<p class="text-center">
+							<button type="submit" class="btn btn-success">{% trans 'create website' %}</button>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

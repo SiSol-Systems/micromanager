@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to micromanager’s documentation! &#8212; micromanager 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-micromanager-s-documentation">
+<h1>Welcome to micromanager&#8217;s documentation!<a class="headerlink" href="#welcome-to-micromanager-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>admin</li>
+<li>generic</li>
+<li>does not come with user or authentication models and thus is easily compatible with your project</li>
+<li>write templates/themes using django syntax</li>
+<li>the cms page editing and management interface derives from your templates</li>
+</ul>
+</div>
+<div class="section" id="missing">
+<h2>Missing<a class="headerlink" href="#missing" title="Permalink to this headline">¶</a></h2>
+<p>There are currently no tests, micromanager still is experimental. There will be tests in the beta stage.</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>django_imagekit&gt;=3.3</li>
+<li>django_cleanup&gt;=0.4.2</li>
+<li>django_widget_tweaks&gt;=1.4.1</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>To install micromanager download the source code on GitHub and place the micromanager folder into your django project folder.
+Then run</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>from within the micromanager folder to install its dependencies. To use micromanager you will need a authentication mechanism with templates/login pages and a superuser.
+There is a very basic authentication app in the demo which you can copy but this is not recommended.
+micromanager itself does not ship with authentication apps because many other django apps do and micromanager aims to be pluggable.</p>
+</div>
+<div class="section" id="demo">
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
+<p>To check out the demo do the following:</p>
+<ol class="arabic">
+<li><p class="first">Download/decompress or clone micromanager from github</p>
+</li>
+<li><p class="first">Create a virtual python environment</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">micromanager</span><span class="o">/</span><span class="n">demo</span>
+<span class="n">virtualenv</span> <span class="n">venv</span>
+<span class="n">source</span> <span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install django in your virtual environment</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">django</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">install micromanager requirements</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">mmdemo</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">micromanager</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">run the development server from within demo/mmdemo</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span> <span class="mi">8080</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">open in the browser</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">log in on the top right to access admin</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="p">:</span> <span class="n">admin</span>
+<span class="n">password</span><span class="p">:</span> <span class="n">admin</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="theming">
+<h1>Theming<a class="headerlink" href="#theming" title="Permalink to this headline">¶</a></h1>
+<p>You create a Theme by creating django templates. Using micromanager template tags you define the sections the user can edit.
+micromanager does not define any page parts like navigation. Its up to the theme programmer to define and name such things.</p>
+<div class="section" id="the-microcontent-concept">
+<h2>The MicroContent concept<a class="headerlink" href="#the-microcontent-concept" title="Permalink to this headline">¶</a></h2>
+<p>You basically just write an html/css/javascript website as a theme.
+If there is a paragraph or other component where the content (text, images) has to come from an editor using the admin panel, you place a micromanager template tag like <code class="docutils literal"><span class="pre">cms_get_microcontent</span></code>. Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontent</span> <span class="s1">&#39;example_paragraph_content&#39;</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The argument <code class="docutils literal"><span class="pre">example_paragraph_content</span></code> names the microcontent. The name will be displayed in the admin (page edit) together with a text input field. By default, the editor can only input text an do no layouting at all. You can allow layouting with the arguments <code class="docutils literal"><span class="pre">layoutable-simple</span></code> and <code class="docutils literal"><span class="pre">layoutable-full</span></code>.</p>
+<p>micromanager template tags have two functions:</p>
+<ul class="simple">
+<li>fetching user created content from the database</li>
+<li>defining editable content parts in the theme</li>
+</ul>
+</div>
+<div class="section" id="files-and-location-of-a-theme">
+<h2>Files and location of a Theme<a class="headerlink" href="#files-and-location-of-a-theme" title="Permalink to this headline">¶</a></h2>
+<p>Take a look at the demo theme in micromanager/themes.
+Themes are subfolders of micromanager/themes and at least consist of</p>
+<ul class="simple">
+<li>settings.json file</li>
+<li>templates/base.html</li>
+<li>one html page template in templates/pages</li>
+</ul>
+<p>Optionally there is the folder templates/content which contains templates for content that is not a page (e.g. a news-template).</p>
+</div>
+<div class="section" id="micromanager-template-tags">
+<h2>micromanager template tags<a class="headerlink" href="#micromanager-template-tags" title="Permalink to this headline">¶</a></h2>
+<p>micromanager template tags are the interface between the theme/layout programmer and the editor (the person editing content in the admin panel).</p>
+<div class="section" id="cms-get-microcontent">
+<h3>cms_get_microcontent<a class="headerlink" href="#cms-get-microcontent" title="Permalink to this headline">¶</a></h3>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontent</span> <span class="s1">&#39;paragraph_content&#39;</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontent</span> <span class="s1">&#39;second_paragraph_content&#39;</span> <span class="s1">&#39;layoutable-simple&#39;</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontent</span> <span class="s1">&#39;third_paragraph_content&#39;</span> <span class="s1">&#39;layoutable-full&#39;</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontent</span> <span class="s1">&#39;fourth_paragraph_content&#39;</span> <span class="s1">&#39;short&#39;</span> <span class="s1">&#39;optional&#39;</span> <span class="o">%</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The first argument names the content. The name of the content is displayed in the page editing interface in the admin.
+The second argument in the example defines if and to what extent the editor may layout the content in the admin panel. The order of the arguments does not matter, except for tha name which has to come first and is the only required argument.</p>
+<p>You can add the <code class="docutils literal"><span class="pre">'optional'</span></code> argument to make the content optional.</p>
+<p>This template tag fetches one content of its name and immediately displays it as html.</p>
+</div>
+<div class="section" id="cms-get-microcontents">
+<h3>cms_get_microcontents<a class="headerlink" href="#cms-get-microcontents" title="Permalink to this headline">¶</a></h3>
+<p>Does the same as <code class="docutils literal"><span class="pre">cms_microcontent</span></code> but fetches multiple content of this name. Multiple Text input boxes are displayed in the admin.</p>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontents</span> <span class="s1">&#39;multi_content&#39;</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">multi_content</span> <span class="o">%</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+                <span class="p">{{</span> <span class="n">content</span> <span class="p">}}</span>
+        <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>More examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontents</span> <span class="s1">&#39;second_multi_content&#39;</span> <span class="s1">&#39;layoutable-simple&#39;</span> <span class="nb">min</span><span class="o">=</span><span class="mi">2</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontents</span> <span class="s1">&#39;third_multi_content&#39;</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">cms_get_microcontents</span> <span class="s1">&#39;fourth_multi_content&#39;</span> <span class="nb">min</span><span class="o">=</span><span class="mi">2</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In addition the <code class="docutils literal"><span class="pre">layoutable-*</span></code> arguments <code class="docutils literal"><span class="pre">get_microcontents</span></code> supports the optional <code class="docutils literal"><span class="pre">min</span></code> and <code class="docutils literal"><span class="pre">max</span></code> keyword arguments defining the minimium and maximum number of content the editor may create in the admin.</p>
+<p>As <code class="docutils literal"><span class="pre">cms_get_microcontents</span></code> fetches multiple database entries, you have to iterate to display the content.</p>
+</div>
+<div class="section" id="cms-get-image">
+<h3>cms_get_image<a class="headerlink" href="#cms-get-image" title="Permalink to this headline">¶</a></h3>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_image</span> <span class="s1">&#39;example-image&#39;</span> <span class="k">as</span> <span class="n">example_image</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;{{ example_image.url }}&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>Displays an image input in the admin and fetches an image instance from the database.</p>
+</div>
+<div class="section" id="cms-get-images">
+<h3>cms_get_images<a class="headerlink" href="#cms-get-images" title="Permalink to this headline">¶</a></h3>
+<p>Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_images</span> <span class="s1">&#39;multi_image&#39;</span> <span class="k">as</span> <span class="n">images</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">images</span> <span class="o">%</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">img</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;{{ image.url }}&quot;</span> <span class="o">/&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>More Examples:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">cms_get_images</span> <span class="s1">&#39;multi_image&#39;</span> <span class="nb">min</span><span class="o">=</span><span class="mi">2</span> <span class="k">as</span> <span class="n">images</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">cms_get_images</span> <span class="s1">&#39;multi_image&#39;</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span> <span class="k">as</span> <span class="n">images</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">cms_get_images</span> <span class="s1">&#39;multi_image&#39;</span> <span class="nb">min</span><span class="o">=</span><span class="mi">2</span> <span class="nb">max</span><span class="o">=</span><span class="mi">3</span> <span class="k">as</span> <span class="n">images</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Fetches multiple images of the defined name. It supports the optional <code class="docutils literal"><span class="pre">min</span></code> and <code class="docutils literal"><span class="pre">max</span></code> keyword arguments and the <code class="docutils literal"><span class="pre">optional</span></code> argument.</p>
+</div>
+<div class="section" id="get-content-by-type">
+<h3>get_content_by_type<a class="headerlink" href="#get-content-by-type" title="Permalink to this headline">¶</a></h3>
+<p>In the admin, the editor can assign types to pages. Available types are defined in <code class="docutils literal"><span class="pre">settings.json</span></code> by the theme creator.
+Types can be used for displaying pages in the navigation.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">get_content_by_type</span> <span class="s1">&#39;Navigation&#39;</span> <span class="k">as</span> <span class="n">navpages</span> <span class="o">%</span><span class="p">}</span>
+
+<span class="o">&lt;</span><span class="n">ul</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav navbar-nav&quot;</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">navpages</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">page</span><span class="o">.</span><span class="n">is_home_page</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">}</span>
+                        <span class="o">&lt;</span><span class="n">li</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;{</span><span class="si">% u</span><span class="s2">rl &#39;micromanager_page&#39; page.slug %}{</span><span class="si">% i</span><span class="s2">f preview %}?preview=1{</span><span class="si">% e</span><span class="s2">ndif %}&quot;</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">page</span><span class="o">.</span><span class="n">title</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="micromanager-template-tags-for-templated-content">
+<h2>micromanager template tags for templated content<a class="headerlink" href="#micromanager-template-tags-for-templated-content" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes the micromanager tags are not enough. You might want to include content that is templated by itself.</p>
+<div class="section" id="get-template-content">
+<h3>get_template_content<a class="headerlink" href="#get-template-content" title="Permalink to this headline">¶</a></h3>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">get_template_content</span> <span class="s1">&#39;content/news.html&#39;</span> <span class="n">limit</span><span class="o">=</span><span class="mi">3</span> <span class="k">as</span> <span class="n">newspages</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">news</span> <span class="ow">in</span> <span class="n">newspages</span> <span class="o">%</span><span class="p">}</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">include_content</span> <span class="n">news</span> <span class="o">%</span><span class="p">}</span>
+<span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Fetches 3 database entries for the content template &#8216;content/news.html&#8217;. This tag has to be used in conjunction with the <code class="docutils literal"><span class="pre">{%</span> <span class="pre">include_content</span> <span class="pre">NAME</span> <span class="pre">%}</span></code> tag to render the content.
+This template tag does not display any input fields in the page editing within the admin because</p>
+</div>
+<div class="section" id="include-latest-content">
+<h3>include_latest_content<a class="headerlink" href="#include-latest-content" title="Permalink to this headline">¶</a></h3>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="n">include_latest_content</span> <span class="s1">&#39;content/news.html&#39;</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Directly renders the latest database entry for &#8216;content/news.html&#8217;.</p>
+</div>
+</div>
+<div class="section" id="settings-json">
+<h2>settings.json<a class="headerlink" href="#settings-json" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">settings.json</span></code> file defines the cornerstones of your theme.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;min_micromanager_version&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Demo Theme&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;navigations&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Navigation&quot;</span><span class="p">,</span> <span class="s2">&quot;Footer&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;sections&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Blog&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;extends&quot;</span> <span class="p">:</span> <span class="s2">&quot;blog_base.html&quot;</span>
+                <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;verbose_template_names&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;pages/free_page.html&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;en&quot;</span> <span class="p">:</span> <span class="s2">&quot;Free Page&quot;</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;pages/home.html&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;en&quot;</span> <span class="p">:</span> <span class="s2">&quot;Home Page Stripes&quot;</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;content/news.html&quot;</span> <span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;en&quot;</span> <span class="p">:</span> <span class="s2">&quot;Test include tag&quot;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">navigations</span></code> define the navigations the editor can assign pages to.</p>
+<p><code class="docutils literal"><span class="pre">Sections</span></code> are used if a separate <code class="docutils literal"><span class="pre">base.html</span></code> template is needed.</p>
+<p><code class="docutils literal"><span class="pre">verbose_template_names</span></code> assign human-readable names to templates. These human-readable names are displayed in the admin when creating a new page form a template.</p>
+</div>
+</div>
+<div class="section" id="support">
+<h1>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h1>
+<p>If you are having issues, please let us know via GitHub issue tracker.</p>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p>micromanager is licensed under the BSD license.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to micromanager&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#general">General</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#missing">Missing</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#demo">Demo</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#theming">Theming</a><ul>
+<li><a class="reference internal" href="#the-microcontent-concept">The MicroContent concept</a></li>
+<li><a class="reference internal" href="#files-and-location-of-a-theme">Files and location of a Theme</a></li>
+<li><a class="reference internal" href="#micromanager-template-tags">micromanager template tags</a><ul>
+<li><a class="reference internal" href="#cms-get-microcontent">cms_get_microcontent</a></li>
+<li><a class="reference internal" href="#cms-get-microcontents">cms_get_microcontents</a></li>
+<li><a class="reference internal" href="#cms-get-image">cms_get_image</a></li>
+<li><a class="reference internal" href="#cms-get-images">cms_get_images</a></li>
+<li><a class="reference internal" href="#get-content-by-type">get_content_by_type</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#micromanager-template-tags-for-templated-content">micromanager template tags for templated content</a><ul>
+<li><a class="reference internal" href="#get-template-content">get_template_content</a></li>
+<li><a class="reference internal" href="#include-latest-content">include_latest_content</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#settings-json">settings.json</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#support">Support</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, SiSol Systems.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
