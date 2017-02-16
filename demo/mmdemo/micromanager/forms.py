@@ -10,8 +10,6 @@ from micromanager.models import INSTALLED_THEMES, CMSLanguages
 
 from django.template import loader
 
-from django.contrib.auth.forms import UserCreationForm
-
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -175,7 +173,8 @@ class FirstTimeSetupForm(forms.Form):
 '''
     create a superuser account with email
 '''
-from django.contrib.auth.forms import UsernameField
+from django.contrib.auth.forms import UserCreationForm
+from .compatibility import UsernameField
 class CreateAdminForm(UserCreationForm):
 
     error_messages = {

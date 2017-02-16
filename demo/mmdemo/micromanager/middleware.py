@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.core.exceptions import SuspiciousFileOperation
 import threading
-from django.urls import reverse
+try:
+    from django.urls import reverse
+except:
+    from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 
 from micromanager.models import INSTALLED_THEMES, CMS
