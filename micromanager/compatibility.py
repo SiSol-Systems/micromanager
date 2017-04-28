@@ -7,3 +7,9 @@ except ImportError:
         def to_python(self, value):
             return unicodedata.normalize('NFKC', super(UsernameField, self).to_python(value))
     
+
+
+try:
+    from django.urls import reverse
+except:
+    from django.core.urlresolvers import reverse

@@ -184,6 +184,10 @@ class CMSLanguages(models.Model):
         return super(CMSLanguages, self).save(*args,**kwargs)
 
 
+    class Meta:
+        unique_together = ('cms', 'language')
+
+
 
 """
     a TamplateContent consists of content_type and a template

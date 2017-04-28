@@ -99,7 +99,7 @@
 		</div>
 		<div class="col-xs-12 col-md-6">
 			<h3 class="visible-xs">{% trans 'Preview' %} <small><a href="http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" target="_blank">{% trans 'show in new window' %}</a></small></h3>
-			<object id="contentPreview" type="text/html" data="http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" ></object>
+			<object id="contentPreview" type="text/html" data="{{ request.scheme }}://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1" ></object>
 		</div>
 	</div>
 </div>
@@ -148,7 +148,7 @@
 
 
 		function reloadPreview(){
-			$("#contentPreview").attr("data", "http://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1");
+			$("#contentPreview").attr("data", "{{ request.scheme }}://{{ request.META.HTTP_HOST }}/{% if template_content %}pages/{{ template_content.pk }}/{% endif %}?preview=1");
 		}
 
 		function deleteFileContent(ev){

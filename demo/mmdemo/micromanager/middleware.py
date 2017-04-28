@@ -18,21 +18,11 @@ MULTI_TENANCY = getattr(settings, "MICROMANAGER_MULTI_TENANCY", False)
 
 _thread_local = threading.local()
 
-
-class MiddlewareMixin(object):
-    def __init__(self, get_response=None):
-        self.get_response = get_response
-        super(MiddlewareMixin, self).__init__()
-
-    def __call__(self, request):
-        response = None
-        if hasattr(self, 'process_request'):
-            response = self.process_request(request)
-        if not response:
-            response = self.get_response(request)
-        if hasattr(self, 'process_response'):
-            response = self.process_response(request, response)
-        return response
+import django
+if django.VERSION >= (1, 10, 0):
+    MiddlewareMixin = django.utils.deprecation.MiddlewareMixin
+else:
+    MiddlewareMixin = object
 
 
 """

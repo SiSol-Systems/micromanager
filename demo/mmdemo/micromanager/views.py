@@ -1,8 +1,5 @@
 from django.shortcuts import render, redirect
-try:
-    from django.urls import reverse
-except:
-    from django.core.urlresolvers import reverse
+from .compatibility import reverse
     
 from django.views.generic.edit import FormView
 from django.views.generic import DetailView, TemplateView, ListView
@@ -743,9 +740,12 @@ class ManageLanguages(AdminOnlyMixin, TemplateView):
             form = self.form_class(request.POST)
 
             if form.is_valid():
-                new_language = form.save(commit=False)
-                new_language.cms = self.request.cms
-                new_language.save()
+                exists = CMSLanguages.objects.filter(cms=self.request.cms,
+                                                     language=form.cleaned_data['language']).exists()
+                if not exists:
+                    new_language = form.save(commit=False)
+                    new_language.cms = self.request.cms
+                    new_language.save()
         
         context["languages"] = CMSLanguages.objects.filter(cms=self.request.cms)
         context["form"] = form
